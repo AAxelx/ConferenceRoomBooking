@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferenceRoomBooking.DAL", "ConferenceRoomBooking.DAL\ConferenceRoomBooking.DAL.csproj", "{52F8647C-2EA4-4CA0-A6F5-930FDC252533}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferenceRoomBooking.SAL", "ConferenceRoomBooking.SAL\ConferenceRoomBooking.SAL.csproj", "{76365B36-42FE-4C17-892C-9EF077DE4EFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferenceRoomBooking.API", "ConferenceRoomBooking.API\ConferenceRoomBooking.API.csproj", "{C36C0CE4-0B5F-4EF7-84BB-0DA677EB95A4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{52F8647C-2EA4-4CA0-A6F5-930FDC252533}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52F8647C-2EA4-4CA0-A6F5-930FDC252533}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52F8647C-2EA4-4CA0-A6F5-930FDC252533}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52F8647C-2EA4-4CA0-A6F5-930FDC252533}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76365B36-42FE-4C17-892C-9EF077DE4EFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76365B36-42FE-4C17-892C-9EF077DE4EFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76365B36-42FE-4C17-892C-9EF077DE4EFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76365B36-42FE-4C17-892C-9EF077DE4EFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C36C0CE4-0B5F-4EF7-84BB-0DA677EB95A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C36C0CE4-0B5F-4EF7-84BB-0DA677EB95A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C36C0CE4-0B5F-4EF7-84BB-0DA677EB95A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C36C0CE4-0B5F-4EF7-84BB-0DA677EB95A4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
