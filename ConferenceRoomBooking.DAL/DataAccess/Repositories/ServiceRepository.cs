@@ -18,6 +18,15 @@ public class ServiceRepository : IServiceRepository
         _mapper = mapper;
     }
 
+    public async Task<List<ServiceModel>> GetServicesByIdsAsync(List<Guid> serviceIds)
+    {
+        var services = await _context.Services.AsNoTracking()
+            .Where(service => serviceIds.Contains(service.Id))
+            .ToListAsync();
+        
+        return _mapper.Map<List<ServiceModel>>(services);
+    }
+    
     public async Task<ServiceModel> AddAsync(ServiceModel model)
     {
         var serviceEntity = _mapper.Map<ServiceEntity>(model);

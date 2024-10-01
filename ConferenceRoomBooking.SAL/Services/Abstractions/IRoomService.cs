@@ -1,11 +1,12 @@
-using ConferenceRoomBooking.Common.Models.DTOs;
+using ConferenceRoomBooking.Common.Models.DTOs.Room;
+using ConferenceRoomBooking.Common.Models.ServiceResult;
 
 namespace ConferenceRoomBooking.SAL.Services.Abstractions;
 
 public interface IRoomService
 {
-    Task<RoomDto> CreateRoomAsync(RoomDto roomDto);
-    Task<RoomDto> UpdateRoomAsync(RoomDto roomDto);
-    Task DeleteRoomAsync(Guid roomId);
-    Task<List<RoomDto>> GetAvailableRoomsAsync(DateTime startTime, DateTime endTime, int capacity);
+    Task<ServiceValueResult<RoomDto>> CreateRoomAsync(CreateRoomDto roomDto);
+    Task<ServiceValueResult<RoomDto>> UpdateRoomAsync(RoomDto roomDto);
+    Task<ServiceResult> DeleteRoomAsync(Guid roomId);
+    Task<ServiceValueResult<List<RoomDto>>> GetAvailableRoomsAsync(DateTime startTime, DateTime endTime, int capacity);
 }

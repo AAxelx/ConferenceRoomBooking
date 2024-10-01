@@ -6,5 +6,5 @@ public class RoomModel
     public string Name { get; set; }
     public int Capacity { get; set; }
     public decimal BasePricePerHour { get; set; }
-    public List<ServiceModel> AvailableServices { get; set; } = new List<ServiceModel>();
+    public List<ServiceModel> AvailableServices { get; set; } = new ();
 }
