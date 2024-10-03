@@ -34,7 +34,7 @@ The project exposes several endpoints for interacting with the booking system:
 - **API** — Controllers for room and booking management
 - **Common** — Shared models and DTOs
 - **DAL** — Data Access Layer, repositories
-- **Services** — Business logic
+- **SAL** — Service Access Layer, business logic
 
 ## Testing
 
