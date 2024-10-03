@@ -28,8 +28,7 @@ public class RoomService(IRoomRepository roomRepository, IServiceRepository serv
     
         if (rooms.Count == 0)
             return new ServiceValueResult<List<RoomDto>>(new List<RoomDto>());
-
-
+        
         return new ServiceValueResult<List<RoomDto>>(mapper.Map<List<RoomDto>>(rooms));
     }
     

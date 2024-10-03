@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferenceRoomBooking.API",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferenceRoomBooking.Common", "ConferenceRoomBooking.Common\ConferenceRoomBooking.Common.csproj", "{5B2E7412-5EC5-4B91-A66E-6B490CCA59EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferenceRoomBooking.Services.Tests", "ConferenceRoomBooking.Services.Tests\ConferenceRoomBooking.Services.Tests.csproj", "{117F8E69-BDF9-4AA3-B451-EC7A549BCF71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{5B2E7412-5EC5-4B91-A66E-6B490CCA59EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B2E7412-5EC5-4B91-A66E-6B490CCA59EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B2E7412-5EC5-4B91-A66E-6B490CCA59EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{117F8E69-BDF9-4AA3-B451-EC7A549BCF71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{117F8E69-BDF9-4AA3-B451-EC7A549BCF71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{117F8E69-BDF9-4AA3-B451-EC7A549BCF71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{117F8E69-BDF9-4AA3-B451-EC7A549BCF71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
