@@ -1,67 +1,41 @@
-Тестовое задание:
+# ConferenceRoomBooking
+Technical task: https://drive.google.com/file/d/1nkY9mT3Do3EyGLodsDbdeNrHPpFZuf3e/view?usp=sharing
 
-Контекст задачі:
-Ви працюєте в компанії, яка розробляє застосунок для управління бронюванням та
-орендою конференц-залів. Ваше завдання — створити API для управління залами,
-бронюваннями та розрахунку вартості оренди.
+## Project Overview
 
-Опис проблеми:
-Компанія надає в оренду конференц-зали для бізнесу. Необхідно розробити просте
-API, яке дозволить клієнтам шукати доступні зали, бронювати їх, а також
-розраховувати вартість оренди залежно від часу та обраних послуг.
+**ConferenceRoomBooking** is an API for managing the booking and rental of conference rooms. The application allows users to find available rooms, book them for specific dates and times, and select additional services.
 
-Технічні вимоги:
-API Методи:
-1. Додавання конференц-залу:
-- Вхідні дані: Назва залу (наприклад, "Зал А"), місткість (наприклад, 50 осіб), список
-доступних послуг (наприклад, проєктор, вартість 500 гривень; Wi-Fi, вартість 300
-гривень), базова вартість оренди за годину (наприклад, 2000 гривень).
-- Вихідні дані: Підтвердження успішного створення залу з унікальним ID.
-2. Редагування інформації про зал:
-- Вхідні дані: ID залу, оновлені дані (наприклад, зміна вартості оренди до 2500
-гривень або додавання послуги "Звук", вартість 700 гривень).
-- Вихідні дані: Підтвердження успішного оновлення.
-3. Видалення конференц-залу:
-- Вхідні дані: ID залу.
-- Вихідні дані: Підтвердження видалення.
-4. Пошук доступних залів:
-- Вхідні дані: Дата та час, місткість (наприклад, дата 01.09.2024, час з 10:00 до 14:00,
-місткість 50 осіб).
-- Вихідні дані: Список доступних залів.
-5. Бронювання залу:
-- Вхідні дані: ID залу, дата і час бронювання, тривалість, обрані послуги.
-- Вихідні дані: Підтвердження бронювання з розрахунком загальної вартості оренди.
+## Key Features
 
-Початкові дані:
-- Зали:
-- Зал А: місткість 50 осіб, базова вартість 2000 гривень за годину.
-- Зал B: місткість 100 осіб, базова вартість 3500 гривень за годину.
-- Зал C: місткість 30 осіб, базова вартість 1500 гривень за годину.
-- Послуги:
-- Проєктор: 500 гривень.
-- Wi-Fi: 300 гривень.
-- Звук: 700 гривень.
+- Manage conference room bookings
+- Search for available rooms by date and time
+- Support for additional services with bookings
+- Calculate rental costs based on time and selected services
+- User authentication and access management
 
-Розрахунок вартості оренди:
-- Вартість оренди залежить від часу бронювання:
-- Стандартні години (з 09:00 до 18:00): базова вартість залу.
-- Вечірні години (з 18:00 до 23:00): знижка 20% на оренду залу.
-- Ранкові години (з 06:00 до 09:00): знижка 10%.
-- Пікові години (з 12:00 до 14:00): націнка 15%.
+## API Endpoints
 
-Додаткові вимоги:
-1. Чистий код та масштабованість: Використовуйте практики з книги "Чистий
-код" Robert Cecil Martin під час написання рішення. Проєкт в майбутньому буде
-розширюватися, тому важливо, щоб він був масштабованим, безпечним та
-відмовостійким. Забезпечити належний рівень безпеки, щоб уникнути проблем з
-клієнтами, які будуть використовувати API.
-2. Звіти та аналітика: Продумайте і додайте до рішення звіти, які будуть корисні
-для бізнесу.
+The project exposes several endpoints for interacting with the booking system:
 
-Плюсом буде:
-- Заповнений GIT README
-- Коментарі в коді
-- Задокументуйте API за допомогою Swagger.
-Форма здачі:
-- Посилання на репозиторій з кодом.
-- Коротка документація по проєкту з описом бізнес-завдань і технічних рішень.
+- **Rooms**
+  - `GET /api/room/available` — Retrieve a list of available conference rooms
+  - `POST /api/room` — Create a new conference room
+  - `PUT /api/room` — Update room information
+  - `DELETE /api/room/{id}` — Delete a room
+
+- **Bookings**
+  - `POST /api/booking` — Create a new booking
+
+- **User**
+  - `POST /api/service` — Add a new service
+
+## Project Structure
+
+- **API** — Controllers for room and booking management
+- **Common** — Shared models and DTOs
+- **DAL** — Data Access Layer, repositories
+- **Services** — Business logic
+
+## Testing
+
+Unit tests have been implemented for the core algorithm responsible for calculating the total booking cost, considering factors like base price, duration, and additional selected services.
