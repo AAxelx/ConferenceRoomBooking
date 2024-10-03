@@ -57,7 +57,7 @@ public class BookingService(IBookingRepository bookingRepository, IRoomRepositor
                 $"The following conflicts were found: {string.Join(", ", conflictMessages)}");
         }
         
-        var rentalCost = CalculateRentalCost(roomModel.BasePricePerHour, createBookingDto.BookingDate, createBookingDto.Duration);
+        var rentalCost = CalculateRentalCost(roomModel.BasePricePerHour, createBookingDto.BookingDate, createBookingDto.Duration, selectedServices.Select(s => s.Price).ToList());
 
         var bookingModel = mapper.Map<BookingModel>(createBookingDto);
         bookingModel.Id = new Guid();
@@ -70,42 +70,33 @@ public class BookingService(IBookingRepository bookingRepository, IRoomRepositor
         return new ServiceValueResult<BookingDto>(createdBookingDto);
     }
     
-    private decimal CalculateRentalCost(decimal basePrice, DateTime bookingDate, TimeSpan duration)
+    public decimal CalculateRentalCost(decimal basePrice, DateTime bookingDate, TimeSpan duration, List<decimal> selectedServicePrices)
     {
-        // Determine the start and end time of the booking
-        var startTime = bookingDate.Date.Add(bookingDate.TimeOfDay);
-        var endTime = startTime.Add(duration);
-    
-        var totalCost = 0.0m;
+        // Get the booking hour
+        var bookingHour = bookingDate.Hour;
 
-        // Use an array to store time ranges and multipliers
-        var timeRanges = new (TimeSpan start, TimeSpan end, decimal multiplier)[]
+        // Determine the coefficient based on time
+        var coefficient = 1.0m; // Base rate
+        if (bookingHour >= 18 && bookingHour < 23)
         {
-            (new TimeSpan(START_WORK_HOUR, 0, 0), new TimeSpan(9, 0, 0), 0.9m),
-            (new TimeSpan(9, 0, 0), new TimeSpan(12, 0, 0), 1.0m),
-            (new TimeSpan(12, 0, 0), new TimeSpan(14, 0, 0), 1.15m),
-            (new TimeSpan(14, 0, 0), new TimeSpan(18, 0, 0), 1.0m),
-            (new TimeSpan(18, 0, 0), new TimeSpan(END_WORK_HOUR, 0, 0), 0.8m)
-        };
-
-        // Iterate through the time ranges and calculate the cost
-        foreach (var (start, end, multiplier) in timeRanges)
+            coefficient = 0.8m; // 20% discount for evening hours
+        }
+        else if (bookingHour >= 6 && bookingHour < 9)
         {
-            // Get the start and end time of the current range
-            var rangeStart = bookingDate.Date.Add(start);
-            var rangeEnd = bookingDate.Date.Add(end);
-
-            // Determine the effective start and end time for calculations
-            var effectiveStart = startTime < rangeStart ? rangeStart : startTime;
-            var effectiveEnd = endTime < rangeEnd ? endTime : rangeEnd;
-
-            // Skip the iteration if the booking goes beyond the current time range
-            if (effectiveStart < effectiveEnd)
-            {
-                totalCost += (decimal)(effectiveEnd - effectiveStart).TotalHours * basePrice * multiplier;
-            }
+            coefficient = 0.9m; // 10% discount for morning hours
+        }
+        else if (bookingHour >= 12 && bookingHour < 14)
+        {
+            coefficient = 1.15m; // 15% surcharge for peak hours
         }
 
+        // Calculate the cost
+        var selectedServiceTotalPrice = new decimal();
+        if (selectedServicePrices.Any())
+            selectedServiceTotalPrice = selectedServicePrices.Sum();
+        
+        var hourlyRate = basePrice * coefficient;
+        var totalCost = hourlyRate * (decimal)duration.TotalHours + selectedServiceTotalPrice;
         return totalCost;
     }
 }
