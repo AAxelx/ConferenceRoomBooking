@@ -18,6 +18,18 @@ public class ServiceRepository : IServiceRepository
         _mapper = mapper;
     }
 
+    public async Task<ServiceModel> GetByIdAsync(Guid id)
+    {
+        var service = await _context.Services.AsNoTracking().FirstOrDefaultAsync(s => s.Id == id);
+        return _mapper.Map<ServiceModel>(service);
+    }
+
+    public async Task<List<ServiceModel>> GetAllAsync()
+    {
+        var services = await _context.Services.AsNoTracking().ToListAsync();
+        return _mapper.Map<List<ServiceModel>>(services);
+    }
+
     public async Task<List<ServiceModel>> GetServicesByIdsAsync(List<Guid> serviceIds)
     {
         var services = await _context.Services.AsNoTracking()
@@ -35,6 +47,13 @@ public class ServiceRepository : IServiceRepository
         return _mapper.Map<ServiceModel>(addedEntity.Entity);
     }
 
+    public async Task UpdateAsync(ServiceModel model)
+    {
+        var serviceEntity = _mapper.Map<ServiceEntity>(model);
+        _context.Services.Update(serviceEntity);
+        await _context.SaveChangesAsync();
+    }
+
     public async Task DeleteAsync(Guid id)
     {
         var serviceEntity = await _context.Services.FindAsync(id);
@@ -43,24 +62,5 @@ public class ServiceRepository : IServiceRepository
             _context.Services.Remove(serviceEntity);
             await _context.SaveChangesAsync();
         }
-    }
-
-    public async Task<List<ServiceModel>> GetAllAsync()
-    {
-        var services = await _context.Services.AsNoTracking().ToListAsync();
-        return _mapper.Map<List<ServiceModel>>(services);
-    }
-
-    public async Task<ServiceModel> GetByIdAsync(Guid id)
-    {
-        var service = await _context.Services.AsNoTracking().FirstOrDefaultAsync(s => s.Id == id);
-        return _mapper.Map<ServiceModel>(service);
-    }
-
-    public async Task UpdateAsync(ServiceModel model)
-    {
-        var serviceEntity = _mapper.Map<ServiceEntity>(model);
-        _context.Services.Update(serviceEntity);
-        await _context.SaveChangesAsync();
     }
 }

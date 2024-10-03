@@ -1,9 +1,9 @@
 using ConferenceRoomBooking.Common.Models;
+using ConferenceRoomBooking.Common.Models.PartialModels;
 
 namespace ConferenceRoomBooking.DAL.DataAccess.Repositories.Abstractions;
 
 public interface IBookingRepository : IRepository<BookingModel>
 {
-    Task<List<BookingModel>> GetBookingsByUserIdAsync(Guid userId);
-    Task<List<BookingModel>> GetBookingsByRoomIdAsync(Guid roomId);
+    Task<List<RoomBookingsOnDateModel>> GetRoomBookingsOnDateAsync(Guid roomId, DateTime date);
 }

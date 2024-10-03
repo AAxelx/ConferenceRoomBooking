@@ -5,5 +5,5 @@ namespace ConferenceRoomBooking.SAL.Services.Abstractions;
 
 public interface IBookingService
 {
-    Task<ServiceValueResult<BookingDto>> CreateBookingAsync(BookingDto bookingDto);
+    Task<ServiceValueResult<BookingDto>> CreateBookingAsync(CreateBookingDto bookingDto);
 }
